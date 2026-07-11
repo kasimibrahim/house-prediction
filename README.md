@@ -45,7 +45,7 @@ npm install
 npm run dev
 ```
 
-Visit the URL Vite prints (usually `http://localhost:5173`).
+Visit the site to test (usually `http://localhost:5173`).
 
 ## Build for production
 
@@ -53,37 +53,6 @@ Visit the URL Vite prints (usually `http://localhost:5173`).
 npm run build
 ```
 
-Output goes to `dist/`.
+## Deployed on Netlify
 
-## Deploy to Netlify
-
-**Option A — drag and drop (fastest):**
-1. Run `npm run build` locally.
-2. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
-3. Drag the `dist` folder onto the page. Netlify gives you a live URL immediately.
-
-**Option B — connect a Git repo (recommended for ongoing updates):**
-1. Push this folder to a GitHub/GitLab/Bitbucket repo.
-2. In Netlify: **Add new site → Import an existing project**, pick the repo.
-3. Build command: `npm run build`. Publish directory: `dist`.
-   (Both are already set in `netlify.toml`, so Netlify should detect them
-   automatically.)
-4. Click **Deploy site**. Every push to the repo redeploys automatically.
-
-No environment variables or secrets are needed — everything runs client-side.
-
-## Project structure
-
-```
-hotel-price-predictor/
-├─ prep_and_train.py     # data cleaning + model training (Python, run offline)
-├─ export_data.json      # raw export of the trained model's numbers
-├─ index.html
-├─ netlify.toml
-├─ package.json
-├─ src/
-│  ├─ main.jsx
-│  ├─ App.jsx            # form + result UI
-│  ├─ model.js            # compiled model + predictPrice() function
-│  └─ styles.css
-```
+Live: `https://hsepredict.netlify.app/`
