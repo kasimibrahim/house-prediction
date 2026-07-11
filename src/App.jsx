@@ -49,8 +49,8 @@ export default function App() {
       <header className="masthead">
         <div className="masthead-mark">NL</div>
         <div className="masthead-text">
-          <h1>Kameroffer</h1>
-          <p>a nightly-rate estimator, ledgered from 525 Netherlands listings</p>
+          <h1>Lux</h1>
+          <p>a nightly-rate estimator, ledgered from 525 Netherlands listings from Kaggle Dataset</p>
         </div>
       </header>
 
