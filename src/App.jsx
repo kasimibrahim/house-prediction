@@ -133,12 +133,12 @@ export default function App() {
             </div>
 
             <div className="stub-price">
-              <span className="stub-currency">₹</span>
-              <span className="stub-amount">{inr(ticket)}</span>
+              <span className="stub-currency">GHS</span>
+              <span className="stub-amount">{inr(ticket/8)}</span>
               <span className="stub-unit">/ night</span>
             </div>
             <div className="stub-range">
-              likely between ₹{inr(bandLow)} and ₹{inr(bandHigh)}
+              likely between GHS{inr(bandLow/8)} and GHS{inr(bandHigh/8)}
             </div>
             <div className="stub-divider" />
             <dl className="stub-details">
