@@ -47,7 +47,9 @@ export default function App() {
   return (
     <div className="page">
       <header className="masthead">
-        <div className="masthead-mark">NL</div>
+        <div className="masthead-mark">
+  <img src="public/avartar.png" alt="avatar" className="masthead-avatar" />
+</div>
         <div className="masthead-text">
           <h1>Lux</h1>
           <p>a nightly-rate estimator, ledgered from 525 Netherlands listings from Kaggle Dataset</p>

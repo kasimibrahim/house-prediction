@@ -59,7 +59,12 @@ body {
   letter-spacing: 0.04em;
   color: var(--forest);
   font-size: 15px;
+  overflow: hidden;
+  position: relative;
+
 }
+
+
 
 .masthead-text h1 {
   font-family: 'Fraunces', serif;
