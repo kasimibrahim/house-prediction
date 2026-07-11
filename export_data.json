@@ -1,0 +1,109 @@
+{
+  "region_map": {
+    "Amsterdam": 14355.267857142857,
+    "Bemelen": 20139.77339901478,
+    "Breda": 10589.217142857144,
+    "Delft": 11538.084033613446,
+    "Den Bosch": 11315.238095238095,
+    "Eindhoven": 9610.19387755102,
+    "Groningen": 11498.69387755102,
+    "Haarlem": 11980.979591836734,
+    "Hoofddorp": 10291.017857142857,
+    "Leeuwarden": 10650.642857142857,
+    "Maastricht": 22630.131868131866,
+    "Middelburg": 12203.31216931217,
+    "Nijmegen": 12186.901098901099,
+    "Roermond": 11727.627329192546,
+    "Rotterdam": 12374.84236453202,
+    "Scheveningen": 12988.267857142857,
+    "The Hague": 12715.36866359447,
+    "Utrecht": 12256.32512315271,
+    "Valkenburg": 12294.394088669951,
+    "Vlissingen": 13010.428571428572,
+    "Voorthuizen": 14464.773399014779,
+    "Zandvoort": 13315.31216931217,
+    "Zwolle": 10001.972789115645
+  },
+  "roomtype_map": {
+    "Apartment/Studio": 13968.643892339544,
+    "Dorm/Pod": 11275.161904761906,
+    "Double": 10811.239382239382,
+    "Family": 15071.785714285716,
+    "King": 14840.187192118226,
+    "Other": 15533.813804173355,
+    "Single": 12760.936507936507,
+    "Suite": 14323.566502463054,
+    "Twin": 11440.425324675323,
+    "Villa/Chalet": 14142.619047619048
+  },
+  "global_mean": 12866.92857142857,
+  "features": [
+    "RegionEnc",
+    "RoomTypeEnc",
+    "Rating",
+    "ReviewsLog",
+    "HasView",
+    "HasBalcony",
+    "IsDeluxePremium"
+  ],
+  "coefficients": {
+    "RegionEnc": 1.3765470595499985,
+    "RoomTypeEnc": 0.4237533320113642,
+    "Rating": 1141.7906253112442,
+    "ReviewsLog": -18.04097178283141,
+    "HasView": 1912.872551788573,
+    "HasBalcony": 354.40419850909996,
+    "IsDeluxePremium": 748.9353230105265
+  },
+  "intercept": -19929.017420407145,
+  "metrics": {
+    "mae": 4016.9299863645138,
+    "r2": 0.22569532369707945,
+    "mape": 0.30122291188257055
+  },
+  "regions_sorted": [
+    "Amsterdam",
+    "Bemelen",
+    "Breda",
+    "Delft",
+    "Den Bosch",
+    "Eindhoven",
+    "Groningen",
+    "Haarlem",
+    "Hoofddorp",
+    "Leeuwarden",
+    "Maastricht",
+    "Middelburg",
+    "Nijmegen",
+    "Roermond",
+    "Rotterdam",
+    "Scheveningen",
+    "The Hague",
+    "Utrecht",
+    "Valkenburg",
+    "Vlissingen",
+    "Voorthuizen",
+    "Zandvoort",
+    "Zwolle"
+  ],
+  "roomtypes_sorted": [
+    "Apartment/Studio",
+    "Dorm/Pod",
+    "Double",
+    "Family",
+    "King",
+    "Other",
+    "Single",
+    "Suite",
+    "Twin",
+    "Villa/Chalet"
+  ],
+  "rating_range": [
+    3.7,
+    10.0
+  ],
+  "reviews_range": [
+    1,
+    7748
+  ]
+}
