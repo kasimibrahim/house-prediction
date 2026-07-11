@@ -1,16 +1,15 @@
 :root {
-  --bg: #0f1b22;
-  --panel: #15262d;
-  --panel-raised: #1a2e35;
-  --line: #2a4048;
-  --text: #edeae0;
-  --text-muted: #91a6ab;
-  --brass: #c89b3c;
-  --brass-bright: #e0b957;
-  --rust: #c1603c;
-  --paper: #f2ead4;
-  --paper-ink: #21221a;
-  --radius: 10px;
+  --ink: #22271d;
+  --ink-soft: rgba(34, 39, 29, 0.62);
+  --ink-faint: rgba(34, 39, 29, 0.45);
+  --glass: rgba(255, 255, 255, 0.86);
+  --glass-soft: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --wood: #a97a3d;
+  --wood-bright: #c99548;
+  --forest: #3f6b4a;
+  --cream: #faf7ee;
+  --radius: 14px;
 }
 
 * { box-sizing: border-box; }
@@ -23,16 +22,15 @@ html, body { margin: 0; padding: 0; }
 
 body {
   background:
-    radial-gradient(1100px 600px at 15% -10%, rgba(200, 155, 60, 0.07), transparent 60%),
-    radial-gradient(900px 500px at 110% 10%, rgba(193, 96, 60, 0.06), transparent 55%),
-    var(--bg);
-  color: var(--text);
+    linear-gradient(180deg, rgba(10, 18, 12, 0.60) 0%, rgba(10, 18, 12, 0.18) 26%, rgba(10, 18, 12, 0.22) 68%, rgba(10, 18, 12, 0.62) 100%),
+    url('/hotel-bg.png') center / cover no-repeat fixed;
+  color: var(--ink);
   font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
 }
 
 .page {
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 48px 24px 32px;
 }
@@ -49,7 +47,9 @@ body {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  border: 1.5px solid var(--brass);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--glass-border);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--brass-bright);
+  color: var(--forest);
   font-size: 15px;
 }
 
@@ -67,12 +67,15 @@ body {
   font-size: clamp(28px, 4vw, 38px);
   margin: 0 0 4px;
   letter-spacing: -0.01em;
+  color: var(--cream);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .masthead-text p {
   margin: 0;
-  color: var(--text-muted);
+  color: rgba(250, 247, 238, 0.88);
   font-size: 14.5px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* --- Desk layout --- */
@@ -87,15 +90,18 @@ body {
   .desk { grid-template-columns: 1fr; }
 }
 
-/* --- Ledger form --- */
+/* --- Ledger form (frosted glass card) --- */
 .ledger {
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: var(--glass);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.45);
 }
 
 .ledger-head {
@@ -104,15 +110,15 @@ body {
   gap: 8px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--ink-soft);
   letter-spacing: 0.03em;
   padding-bottom: 14px;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px dashed rgba(34, 39, 29, 0.2);
 }
 
 .dotted-fill {
   flex: 1;
-  border-bottom: 1px dotted var(--line);
+  border-bottom: 1px dotted rgba(34, 39, 29, 0.25);
   height: 0;
   transform: translateY(-4px);
 }
@@ -127,23 +133,23 @@ body {
   font-size: 12.5px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: var(--ink-soft);
   display: flex;
   justify-content: space-between;
 }
 
 .field-label em {
   font-style: normal;
-  color: var(--brass-bright);
+  color: var(--forest);
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0;
 }
 
 select, input[type="number"] {
-  background: var(--panel-raised);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--text);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(34, 39, 29, 0.18);
+  border-radius: 8px;
+  color: var(--ink);
   padding: 11px 12px;
   font-size: 15px;
   font-family: 'Inter', sans-serif;
@@ -151,13 +157,13 @@ select, input[type="number"] {
 }
 
 select:focus-visible, input:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--forest);
   outline-offset: 1px;
 }
 
 input[type="range"] {
   width: 100%;
-  accent-color: var(--brass);
+  accent-color: var(--forest);
 }
 
 .checks .check-grid {
@@ -172,43 +178,27 @@ input[type="range"] {
   align-items: center;
   gap: 10px;
   font-size: 14.5px;
-  color: var(--text);
+  color: var(--ink);
   cursor: pointer;
 }
 
 .check input {
-  accent-color: var(--brass);
+  accent-color: var(--forest);
   width: 16px;
   height: 16px;
 }
 
-.stamp-btn {
-  margin-top: 6px;
-  background: var(--brass);
-  color: #1b1406;
-  border: none;
-  border-radius: 6px;
-  padding: 14px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.stamp-btn:hover { background: var(--brass-bright); }
-.stamp-btn:active { transform: scale(0.98); }
-.stamp-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-
-/* --- Ticket stub --- */
+/* --- Ticket stub (frosted glass, wood-toned price) --- */
 .stub {
   position: relative;
-  background: var(--paper);
-  color: var(--paper-ink);
+  background: var(--glass);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  color: var(--ink);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 18px 40px -20px rgba(0,0,0,0.55);
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.45);
 }
 
 .stub-perf {
@@ -217,7 +207,7 @@ input[type="range"] {
   bottom: 0;
   left: 30%;
   width: 0;
-  border-left: 2px dashed rgba(33,34,26,0.25);
+  border-left: 2px dashed rgba(34, 39, 29, 0.18);
 }
 
 @media (max-width: 760px) {
@@ -235,15 +225,8 @@ input[type="range"] {
   font-size: 11.5px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(33,34,26,0.55);
+  color: var(--ink-faint);
   margin-bottom: 20px;
-}
-
-.stub-empty {
-  font-size: 14.5px;
-  color: rgba(33,34,26,0.65);
-  line-height: 1.6;
-  padding: 12px 0 4px;
 }
 
 .stub-price {
@@ -258,19 +241,19 @@ input[type="range"] {
   font-size: clamp(38px, 7vw, 52px);
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--rust);
+  color: var(--wood);
 }
-.stub-unit { font-size: 14px; color: rgba(33,34,26,0.55); font-family: 'Inter', sans-serif; }
+.stub-unit { font-size: 14px; color: var(--ink-soft); font-family: 'Inter', sans-serif; }
 
 .stub-range {
   font-size: 13px;
-  color: rgba(33,34,26,0.6);
+  color: var(--ink-soft);
   margin-top: 6px;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .stub-divider {
-  border-top: 1px dashed rgba(33,34,26,0.25);
+  border-top: 1px dashed rgba(34, 39, 29, 0.2);
   margin: 20px 0;
 }
 
@@ -286,7 +269,7 @@ input[type="range"] {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(33,34,26,0.5);
+  color: var(--ink-faint);
 }
 .stub-details dd { margin: 0; font-size: 14.5px; font-weight: 500; }
 
@@ -294,11 +277,12 @@ input[type="range"] {
 .colophon {
   margin-top: 36px;
   padding-top: 20px;
-  border-top: 1px solid var(--line);
-  color: var(--text-muted);
+  border-top: 1px solid rgba(250, 247, 238, 0.3);
+  color: rgba(250, 247, 238, 0.85);
   font-size: 13px;
   line-height: 1.6;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .colophon p { margin: 0 0 6px; }
-.colophon-sub { color: rgba(145, 166, 171, 0.7); font-size: 12px; }
+.colophon-sub { color: rgba(250, 247, 238, 0.65); font-size: 12px; }

@@ -20,27 +20,29 @@ export default function App() {
   const [hasView, setHasView] = useState(false)
   const [hasBalcony, setHasBalcony] = useState(false)
   const [isDeluxe, setIsDeluxe] = useState(false)
-  const [ticket, setTicket] = useState(null)
   const [ticketNo] = useState(() => Math.floor(100000 + Math.random() * 899999))
 
   const mape = MODEL.metrics.mape
 
-  const bandLow = ticket ? Math.round(ticket * (1 - mape)) : null
-  const bandHigh = ticket ? Math.round(ticket * (1 + mape)) : null
+  // Recomputes automatically whenever any dependency below changes —
+  // no button needed. predictPrice() is pure math (a dot-product against
+  // the trained coefficients), so this is effectively instant.
+  const ticket = useMemo(
+    () =>
+      predictPrice({
+        region,
+        roomType,
+        rating: Number(rating),
+        reviewsCount: Number(reviewsCount),
+        hasView,
+        hasBalcony,
+        isDeluxe,
+      }),
+    [region, roomType, rating, reviewsCount, hasView, hasBalcony, isDeluxe]
+  )
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    const price = predictPrice({
-      region,
-      roomType,
-      rating: Number(rating),
-      reviewsCount: Number(reviewsCount),
-      hasView,
-      hasBalcony,
-      isDeluxe,
-    })
-    setTicket(price)
-  }
+  const bandLow = Math.round(ticket * (1 - mape))
+  const bandHigh = Math.round(ticket * (1 + mape))
 
   return (
     <div className="page">
@@ -53,7 +55,7 @@ export default function App() {
       </header>
 
       <main className="desk">
-        <form className="ledger" onSubmit={handleSubmit}>
+        <div className="ledger">
           <div className="ledger-row ledger-head">
             <span>Booking particulars</span>
             <span className="dotted-fill" aria-hidden="true" />
@@ -120,11 +122,9 @@ export default function App() {
               </label>
             </div>
           </div>
+        </div>
 
-          <button type="submit" className="stamp-btn">Estimate rate</button>
-        </form>
-
-        <div className={`stub ${ticket ? 'stub-active' : ''}`}>
+        <div className="stub stub-active">
           <div className="stub-perf" aria-hidden="true" />
           <div className="stub-inner">
             <div className="stub-row">
@@ -132,30 +132,21 @@ export default function App() {
               <span>{todayStamp()}</span>
             </div>
 
-            {ticket ? (
-              <>
-                <div className="stub-price">
-                  <span className="stub-currency">GHS</span>
-                  <span className="stub-amount">{inr(ticket/8)}</span>
-                  <span className="stub-unit">/ night</span>
-                </div>
-                <div className="stub-range">
-                  likely between GHS{inr(bandLow/8)} and GHS{inr(bandHigh/8)}
-                </div>
-                <div className="stub-divider" />
-                <dl className="stub-details">
-                  <div><dt>Region</dt><dd>{region}</dd></div>
-                  <div><dt>Room</dt><dd>{roomType}</dd></div>
-                  <div><dt>Rating</dt><dd>{Number(rating).toFixed(1)}</dd></div>
-                  <div><dt>Reviews</dt><dd>{reviewsCount}</dd></div>
-                </dl>
-              </>
-            ) : (
-              <div className="stub-empty">
-                Fill in the particulars and press <strong>Estimate rate</strong> —
-                the stub prints here.
-              </div>
-            )}
+            <div className="stub-price">
+              <span className="stub-currency">₹</span>
+              <span className="stub-amount">{inr(ticket)}</span>
+              <span className="stub-unit">/ night</span>
+            </div>
+            <div className="stub-range">
+              likely between ₹{inr(bandLow)} and ₹{inr(bandHigh)}
+            </div>
+            <div className="stub-divider" />
+            <dl className="stub-details">
+              <div><dt>Region</dt><dd>{region}</dd></div>
+              <div><dt>Room</dt><dd>{roomType}</dd></div>
+              <div><dt>Rating</dt><dd>{Number(rating).toFixed(1)}</dd></div>
+              <div><dt>Reviews</dt><dd>{reviewsCount}</dd></div>
+            </dl>
           </div>
         </div>
       </main>
